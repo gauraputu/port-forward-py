@@ -47,14 +47,15 @@ class PortForwardApp(App):
 
     def _refresh_table(self) -> None:
         dt = self.query_one(DataTable)
+        cursor_row = dt.cursor_row
         dt.clear()
         for entry in self._entries:
             running = self._tunnel.is_running(entry.id)
             status = "[green]● ON[/]" if running else "[dim red]● OFF[/]"
-            forward = f"{entry.local_port} → {entry.remote_host}:{entry.remote_port}"
-            if entry.target_host != "localhost":
-                forward += f" (via {entry.target_host})"
+            forward = f"{entry.local_port} → {entry.target_host}:{entry.remote_port}  ({entry.remote_host})"
             dt.add_row(status, entry.name, forward)
+        if cursor_row is not None and cursor_row < dt.row_count:
+            dt.cursor_coordinate = (cursor_row, 0)
 
     def _stop_colliding(self, entry: ForwardEntry) -> list[str]:
         stopped: list[str] = []
