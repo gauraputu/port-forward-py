@@ -5,9 +5,15 @@ TUI for managing SSH port forwarding tunnels, built with [Textual](https://textu
 ## Install
 
 ```bash
-pip install .
+uv tool install .
 ```
 
+## Dev Run (no install)
+
+
+```bash
+uv run python -m port_forward
+```
 ## Usage
 
 ```bash
@@ -16,13 +22,13 @@ port-forward
 
 ## Keybindings
 
-| Key           | Action                          |
-|---------------|---------------------------------|
-| `Space`/`Enter` | Toggle selected tunnel on/off |
-| `a`           | Add new tunnel                  |
-| `e`           | Edit selected tunnel            |
-| `d`           | Delete selected tunnel          |
-| `q`           | Quit                            |
+| Key              | Action                          |
+|------------------|---------------------------------|
+| `Space` / `Enter` | Toggle selected tunnel on/off  |
+| `a`              | Add new tunnel                  |
+| `e`              | Edit selected tunnel            |
+| `d`              | Delete selected tunnel          |
+| `q`              | Quit                            |
 
 ## Configuration
 
@@ -31,12 +37,13 @@ All tunnels are saved to `~/.port-forward/config.json`. Each entry has:
 - **Name** — display label
 - **Local Port** — port on your machine
 - **Remote Host** — SSH destination (`user@host`)
-- **Remote Port** — port on the remote host
+- **Target Host** — host to reach from the remote side
+- **Remote Port** — port on the target host
 
 The SSH command run is:
 
 ```
-ssh -N -L <local_port>:localhost:<remote_port> <remote_host>
+ssh -N -L <local_port>:<target_host>:<remote_port> <remote_host>
 ```
 
 ## Port Collision
