@@ -1,0 +1,13 @@
+[project]
+name = "port-forward"
+version = "1.0.0"
+description = "TUI for managing SSH port forwarding"
+requires-python = ">=3.10"
+dependencies = ["textual>=0.80.0"]
+
+[project.scripts]
+port-forward = "port_forward.app:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
