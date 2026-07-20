@@ -69,6 +69,12 @@ class EditScreen(ModalScreen[dict | None]):
                 placeholder="e.g. user@db.example.com",
                 id="remote_host",
             )
+            yield Label("Target Host (on remote side)")
+            yield Input(
+                value=str(self._initial.get("target_host", "localhost")),
+                placeholder="e.g. db.internal or localhost",
+                id="target_host",
+            )
             yield Label("Remote Port")
             yield Input(
                 value=str(self._initial.get("remote_port", "")),
@@ -90,6 +96,7 @@ class EditScreen(ModalScreen[dict | None]):
             name = self.query_one("#name", Input).value.strip()
             local_port_str = self.query_one("#local_port", Input).value.strip()
             remote_host = self.query_one("#remote_host", Input).value.strip()
+            target_host = self.query_one("#target_host", Input).value.strip() or "localhost"
             remote_port_str = self.query_one("#remote_port", Input).value.strip()
 
             errors = []
@@ -125,5 +132,6 @@ class EditScreen(ModalScreen[dict | None]):
                 "name": name,
                 "local_port": local_port,
                 "remote_host": remote_host,
+                "target_host": target_host,
                 "remote_port": remote_port,
             })

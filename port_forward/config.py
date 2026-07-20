@@ -14,6 +14,7 @@ class ForwardEntry:
     local_port: int
     remote_host: str
     remote_port: int
+    target_host: str = "localhost"
     id: str = field(default_factory=lambda: str(uuid.uuid4())[:8])
 
     def to_dict(self) -> dict:
@@ -23,6 +24,7 @@ class ForwardEntry:
             "local_port": self.local_port,
             "remote_host": self.remote_host,
             "remote_port": self.remote_port,
+            "target_host": self.target_host,
         }
 
     @classmethod
@@ -33,6 +35,7 @@ class ForwardEntry:
             local_port=data["local_port"],
             remote_host=data["remote_host"],
             remote_port=data["remote_port"],
+            target_host=data.get("target_host", "localhost"),
         )
 
 

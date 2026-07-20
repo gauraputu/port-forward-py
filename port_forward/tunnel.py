@@ -22,7 +22,7 @@ class TunnelManager:
             "-o", "ExitOnForwardFailure=yes",
             "-o", "StrictHostKeyChecking=accept-new",
             "-N",
-            "-L", f"{entry.local_port}:localhost:{entry.remote_port}",
+            "-L", f"{entry.local_port}:{entry.target_host}:{entry.remote_port}",
             entry.remote_host,
         ]
 

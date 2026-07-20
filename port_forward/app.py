@@ -52,6 +52,8 @@ class PortForwardApp(App):
             running = self._tunnel.is_running(entry.id)
             status = "[green]● ON[/]" if running else "[dim red]● OFF[/]"
             forward = f"{entry.local_port} → {entry.remote_host}:{entry.remote_port}"
+            if entry.target_host != "localhost":
+                forward += f" (via {entry.target_host})"
             dt.add_row(status, entry.name, forward)
 
     def _stop_colliding(self, entry: ForwardEntry) -> list[str]:
@@ -102,6 +104,7 @@ class PortForwardApp(App):
             "name": entry.name,
             "local_port": str(entry.local_port),
             "remote_host": entry.remote_host,
+            "target_host": entry.target_host,
             "remote_port": str(entry.remote_port),
         }
         self.push_screen(EditScreen(initial), lambda result: self._on_edit_done(idx, result))
@@ -125,6 +128,7 @@ class PortForwardApp(App):
             name=result["name"],
             local_port=result["local_port"],
             remote_host=result["remote_host"],
+            target_host=result["target_host"],
             remote_port=result["remote_port"],
         ))
         save_entries(self._entries)
@@ -137,6 +141,7 @@ class PortForwardApp(App):
         entry.name = result["name"]
         entry.local_port = result["local_port"]
         entry.remote_host = result["remote_host"]
+        entry.target_host = result["target_host"]
         entry.remote_port = result["remote_port"]
         save_entries(self._entries)
         self._refresh_table()
