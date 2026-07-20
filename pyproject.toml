@@ -1,12 +1,42 @@
 [project]
-name = "port-forward"
+name = "port-forward-py"
 version = "1.0.0"
 description = "TUI for managing SSH port forwarding"
+readme = "README.md"
 requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "gaura", email = "gauraputu@gmail.com"},
+]
+keywords = ["ssh", "port-forwarding", "tunnel", "tui", "textual", "cli"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet",
+    "Topic :: System :: Networking",
+    "Topic :: Utilities",
+]
 dependencies = ["textual>=0.80.0"]
+
+[project.urls]
+Homepage = "https://github.com/gauraputu/port-forward-py"
+Repository = "https://github.com/gauraputu/port-forward-py"
+Issues = "https://github.com/gauraputu/port-forward-py/issues"
 
 [project.scripts]
 port-forward = "port_forward.app:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["port_forward"]
 
 [build-system]
 requires = ["hatchling"]

@@ -62,7 +62,7 @@ wheels = [
 ]
 
 [[package]]
-name = "port-forward"
+name = "port-forward-py"
 version = "1.0.0"
 source = { editable = "." }
 dependencies = [
