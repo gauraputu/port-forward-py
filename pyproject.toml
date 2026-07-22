@@ -1,5 +1,5 @@
 [project]
-name = "port-forward-py"
+name = "portforwarder"
 version = "1.0.0"
 description = "TUI for managing SSH port forwarding"
 readme = "README.md"
@@ -28,15 +28,15 @@ classifiers = [
 dependencies = ["textual>=0.80.0"]
 
 [project.urls]
-Homepage = "https://github.com/gauraputu/port-forward-py"
-Repository = "https://github.com/gauraputu/port-forward-py"
-Issues = "https://github.com/gauraputu/port-forward-py/issues"
+Homepage = "https://github.com/gauraputu/portforwarder"
+Repository = "https://github.com/gauraputu/portforwarder"
+Issues = "https://github.com/gauraputu/portforwarder/issues"
 
 [project.scripts]
-port-forward = "port_forward.app:main"
+portforwarder = "portforwarder.app:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["port_forward"]
+packages = ["portforwarder"]
 
 [build-system]
 requires = ["hatchling"]

@@ -1,4 +1,4 @@
-# port-forward
+# portforwarder
 
 TUI for managing SSH port forwarding tunnels, built with [Textual](https://textual.textualize.io/).
 
@@ -12,12 +12,12 @@ uv tool install .
 
 
 ```bash
-uv run python -m port_forward
+uv run python -m portforwarder
 ```
 ## Usage
 
 ```bash
-port-forward
+portforwarder
 ```
 
 ## Keybindings
